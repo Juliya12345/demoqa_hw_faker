@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.TestData;
 
+
 public class FakerPracticeTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -11,13 +12,14 @@ public class FakerPracticeTests extends TestBase {
 
     @Test
     void practiceFormTest() {
+
         registrationPage.openPage()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setEmail(testData.userEmail)
                 .setGender(testData.userGender)
                 .setUserNumber(testData.userNumber)
-                .setDateOfBirth(String.format("%02d",testData.dayOfBirth), testData.monthOfBirth, String.format("%s",testData.yearOfBirth))
+                .setDateOfBirth(testData.day, testData.month,testData.year)
                 .setSubject(testData.subject)
                 .setHobbies(testData.hobbies)
                 .uploadPicture(testData.picture)
@@ -26,18 +28,20 @@ public class FakerPracticeTests extends TestBase {
                 .setCity(testData.city)
                 .submit();
 
-        registrationPage.checkResult("Student Name",testData.firstName + " " + testData.lastName)
-                .checkResult("Student Email",testData.userEmail)
+        registrationPage.checkResult("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResult("Student Email", testData.userEmail)
                 .checkResult("Gender", testData.userGender)
-                .checkResult("Mobile",testData.userNumber)
-                .checkResult("Date of Birth", String.format("%02d",testData.dayOfBirth) + " " + testData.monthOfBirth + "," + String.format("%s",testData.yearOfBirth))
+                .checkResult("Mobile", testData.userNumber)
+                .checkResult("Date of Birth", testData.day + " " + testData.month + "," + testData.year)
                 .checkResult("Subjects", testData.subject)
-                .checkResult("Hobbies",testData.hobbies)
-                .checkResult("Picture",testData.picture)
-                .checkResult("Address",testData.address)
-                .checkResult("State and City",testData.state + " " + testData.city);
+                .checkResult("Hobbies", testData.hobbies)
+                .checkResult("Picture", testData.picture)
+                .checkResult("Address", testData.address)
+                .checkResult("State and City", testData.state + " " + testData.city);
 
     }
+
+
     @Test
 
     void minimalFormTest() {
@@ -47,14 +51,14 @@ public class FakerPracticeTests extends TestBase {
                 .setEmail(testData.userEmail)
                 .setGender(testData.userGender)
                 .setUserNumber(testData.userNumber)
-                .setDateOfBirth(String.format("%02d",testData.dayOfBirth), testData.monthOfBirth, String.format("%s",testData.yearOfBirth))
+                .setDateOfBirth(testData.day, testData.month,testData.year)
                 .submit();
 
         registrationPage.checkResult("Student Name",testData.firstName + " " + testData.lastName)
                 .checkResult("Student Email",testData.userEmail)
                 .checkResult("Gender", testData.userGender)
                 .checkResult("Mobile",testData.userNumber)
-                .checkResult("Date of Birth", String.format("%02d",testData.dayOfBirth) + " " + testData.monthOfBirth + "," + String.format("%s",testData.yearOfBirth));
+                .checkResult("Date of Birth",  testData.day + " " + testData.month + "," + testData.year);
 
     }
     @Test
@@ -65,7 +69,7 @@ public class FakerPracticeTests extends TestBase {
                 .setLastName(testData.lastName)
                 .setEmail(testData.userEmail)
                 .setGender(testData.userGender)
-                .setDateOfBirth(String.format("%02d",testData.dayOfBirth), testData.monthOfBirth, String.format("%s",testData.yearOfBirth))
+                .setDateOfBirth(testData.day, testData.month,testData.year)
                 .submit();
 
 
@@ -73,3 +77,4 @@ public class FakerPracticeTests extends TestBase {
 
     }
 }
+

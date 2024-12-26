@@ -2,18 +2,28 @@ package utils;
 
 import com.github.javafaker.Faker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class TestData {
-    Faker faker = new Faker();
+    Faker faker = new Faker(new Locale("en-GB"));
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/yyyy/LLLL",Locale.UK);
 
     public String firstName = faker.name().firstName();
     public String lastName = faker.name().lastName();
     public String userEmail = faker.internet().emailAddress();
     public String userGender = faker.options().option("Male", "Female", "Other");
     public String userNumber = faker.phoneNumber().subscriberNumber(10);
-    public int dayOfBirth = faker.number().numberBetween(1, 28);
-    public String monthOfBirth = faker.options().option("January", "February", "March", "April",
-            "May", "June", "July", "August", "September", "October", "November", "December");
-    public int yearOfBirth = faker.number().numberBetween(1900, 2024);
+//    public Date dayOfBirth =  faker.date().birthday(18, 70);
+//    public int dayOfBirth = faker.number().numberBetween(1, 28);
+//    public String monthOfBirth = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+//    public int yearOfBirth = faker.number().numberBetween(1900, 2024);
+    public Date birthday = faker.date().birthday(18, 70);
+    String dob = sdf.format(birthday);
+    public String day = dob.substring(0,2);
+    public String year = dob.substring(3,7);
+    public String month = dob.substring(8);
     public String subject = faker.options().option("Accounting", "Arts", "Biology", "Chemistry", "Civics", "Commerce", "Computer Science", "Economics", "English",
             "Hindi", "History", "Maths", "Physics", "Social Studies");
     public String hobbies = faker.options().option("Sports", "Reading", "Music");
@@ -37,6 +47,18 @@ public class TestData {
                 return null;
 
         }
+
+//        public String dayOfBirth(){
+//            Faker faker = new Faker(new Locale("en-GB"));
+//            Date birthday = faker.date().birthday(18, 70);
+//            SimpleDateFormat sdf = new SimpleDateFormat("dd/yyyy/LLLL",Locale.UK);
+//            String dob = sdf.format(birthday);
+//            System.out.println(dob);
+//            String day = dob.substring(0,2);
+//            String year = dob.substring(3,7);
+//            String month = dob.substring(8);
+//            return day, year;
+//        }
 
     }
 }
